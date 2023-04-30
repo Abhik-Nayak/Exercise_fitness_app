@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+// import {BrowswerRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+import { Box } from '@mui/material';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Footer from './components/Footer';
+import ExerciseDetail from './pages/ExerciseDetail';
+import "./App.css"
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Box width="400px" sx={{ width: { xl: '1488px' } }} m="auto">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/exercise/:id" element={<ExerciseDetail />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </Box>
   )
 }
 
